@@ -1,30 +1,15 @@
 import React from 'react';
-import axios from 'axios';
 
-const FindByPincode = () => 
+const FindByPincode = ({handleSubmit}) => 
 {
   
-  const handleSubmit = event => {
-    event.preventDefault();
-    const { target } = event;
-    const { pincode } = target;
-    // console.log(pincode.value);
-    const BASE_URL = 'https://cdn-api.co-vin.in/api';
-    const ENDPOINT = '/v2/appointment/sessions/public/findByPin'
-
-    axios.get(BASE_URL + ENDPOINT + "?pincode=" + pincode.value +"&date=30-11-2021" ,{
-      headers: {
-        'accept-language': 'en-IN',
-        
-      }
-    }).then(response => {
-      console.log(response);
-    })
-  }
-
+ const findByPincode = (event) => 
+{
+    handleSubmit(event,"pincode")
+}
   return(
     <div>
-      <form onSubmit={handleSubmit} >
+      <form onSubmit={findByPincode} >
         <label htmlFor="pincode">
           Your Pincode: 
           <input id="pincode" type="text" />
